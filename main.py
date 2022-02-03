@@ -1,16 +1,44 @@
-# This is a sample Python script.
+import random
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+GameOver = ValueError
 
+def gess_number():
+    return random.randint(10, 20)
+def chek_namber(namber, gesse):
+    message = "Men oylagan son"
+    if namber<gesse:
+        message = f"{message} {gesse} dan kichikroq."
+        return message
+    elif namber>gesse:
+        message = f"{message} {gesse} dan kataaroq."
+        return message
+    else:
+        raise GameOver
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    namber = gess_number()
+    print("men 10-20 oraligh`ida son o`yladim: ", namber)
+    # gesse = int(input("taxminingizni kiriting"))
 
-
-# Press the green button in the gutter to run the script.
+    bir = 1
+    while True:
+        if bir <= 3:
+            try:
+                gesse = int(input("taxminingizni kiriting"))
+            except ValueError:
+                print("int kriting")
+                break
+            try:
+                message = chek_namber(namber, gesse)
+                print(message)
+            except GameOver:
+                print (f"you found the correct answer on the {bir} try")
+                break
+            bir += 1
+            print(bir)
+        else:
+            print("yutqazdingiz")
+            print(f"correct answer {namber}")
+            break
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
